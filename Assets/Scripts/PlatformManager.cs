@@ -1,23 +1,20 @@
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class PlatformManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static PlatformManager Instance;
     
-    public bool isShootingActive;
     public Platform platform;
     
     private void Awake()
     {
         if (Instance != null) return;
         Instance = this;
-        InitializeGameManager();
+        InitializePlatformManager();
     }
 
-    private void InitializeGameManager()
+    private void InitializePlatformManager()
     {
-        isShootingActive = true;
-
 #if UNITY_EDITOR
         platform = Platform.Editor;
 #else

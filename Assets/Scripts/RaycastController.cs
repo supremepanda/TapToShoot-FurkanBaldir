@@ -18,7 +18,7 @@ public class RaycastController : MonoBehaviour
 
     private void SendRayCast(Vector3 inputPosition)
     {
-        if (!GameManager.Instance.isShootingActive) return;
+        if (!ShootManager.Instance.isShootingEnabled) return;
         RaycastHit hit;
         Ray ray = _mainCamera.ScreenPointToRay(inputPosition);
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;

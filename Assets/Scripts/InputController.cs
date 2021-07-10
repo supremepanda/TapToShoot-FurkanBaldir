@@ -9,7 +9,7 @@ public class InputController : MonoBehaviour
     private Platform _platform;
     private void Start()
     {
-        _platform = GameManager.Instance.platform;
+        _platform = PlatformManager.Instance.platform;
     }
 
     private void Update()
