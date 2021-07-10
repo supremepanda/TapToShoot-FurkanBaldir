@@ -18,13 +18,13 @@ public class RaycastController : MonoBehaviour
 
     private void SendRayCast(Vector3 inputPosition)
     {
+        if (!GameManager.Instance.isShootingActive) return;
         RaycastHit hit;
         Ray ray = _mainCamera.ScreenPointToRay(inputPosition);
         if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
-        if (hit.collider.CompareTag("Target"))
-        {
-            var targetDirection = ray.direction;
-            OnTargetRaycasted?.Invoke(hit.transform);
-        }
+        if (!hit.collider.CompareTag("Target")) return;
+        var targetDirection = ray.direction;
+        OnTargetRaycasted?.Invoke(hit.transform);
+
     }
 }
