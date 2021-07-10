@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-public class Bomb : ProjectileBehaviour
+public class Bomb : Projectile
 {
     [SerializeField] private float explosionRange;
     
-    protected override void HitTarget(GameObject target)
+    protected override void HitTarget(Collision target)
     {
-        Debug.Log("bomb");
+        Debug.Log(target.gameObject.name);
     }
 }

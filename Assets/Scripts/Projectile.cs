@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class ProjectileBehaviour : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] protected float speed;
     [SerializeField] protected Material material;
     protected Rigidbody rigidbody;
     
-    protected abstract void HitTarget(GameObject target);
+    protected abstract void HitTarget(Collision target);
     
     protected virtual void Awake()
     {
@@ -18,13 +18,14 @@ public abstract class ProjectileBehaviour : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Target"))
         {
-            HitTarget(other.gameObject);
+            HitTarget(other);
         }
     }
 
-    public void Fire(Vector3 direction)
+    public void Fire(Transform targetTransform)
     {
-        rigidbody.velocity = direction * speed;
+        transform.LookAt(targetTransform);
+        rigidbody.velocity = transform.forward * speed;
     }
     
     

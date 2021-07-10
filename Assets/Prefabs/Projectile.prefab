@@ -111,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   material: {fileID: 0}
-  hitForce: 0
+  hitForce: 50
 --- !u!54 &5319853538092788212
 Rigidbody:
   m_ObjectHideFlags: 0

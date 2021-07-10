@@ -2,7 +2,7 @@
 
 public class RaycastController : MonoBehaviour
 {
-    public delegate void RaycastTarget(Vector3 targetDirection);
+    public delegate void RaycastTarget(Transform targetTransform);
     public event RaycastTarget OnTargetRaycasted;
     
     private InputController _inputController;
@@ -24,7 +24,7 @@ public class RaycastController : MonoBehaviour
         if (hit.collider.CompareTag("Target"))
         {
             var targetDirection = ray.direction;
-            OnTargetRaycasted?.Invoke(targetDirection);
+            OnTargetRaycasted?.Invoke(hit.transform);
         }
     }
 }

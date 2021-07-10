@@ -12,9 +12,9 @@ public class ProjectileLauncher : MonoBehaviour
         _raycastController.OnTargetRaycasted += SpawnProjectile;
     }
 
-    private void SpawnProjectile(Vector3 targetDirection)
+    private void SpawnProjectile(Transform targetTransform)
     {
         GameObject newProjectile = Instantiate(projectile, projectileSpawnPosition.position, Quaternion.identity);
-        newProjectile.GetComponent<ProjectileBehaviour>().Fire(targetDirection);
+        newProjectile.GetComponent<Projectile>().Fire(targetTransform);
     }
 }
