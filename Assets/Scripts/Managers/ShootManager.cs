@@ -12,6 +12,7 @@ namespace Managers
             if (Instance != null) return;
             Instance = this;
             InitializeShootManager();
+            Application.targetFrameRate = 60;
         }
 
         private void InitializeShootManager()

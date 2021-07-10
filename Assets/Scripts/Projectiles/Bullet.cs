@@ -9,12 +9,10 @@ namespace Projectiles
     
         protected override void HitTarget(Collision target)
         {
-            target.collider.gameObject.GetComponent<ShootableSurface>().isHit = true;
-            var forceDirection = -target.GetContact(0).normal;   
+            base.HitTarget(target);
+            target.gameObject.GetComponent<ShootableSurface>().HitByProjectile();
             var targetRigidbody = target.gameObject.GetComponent<Rigidbody>();
-            targetRigidbody.AddForce(forceDirection * hitForce, ForceMode.Impulse);
-            
-            Destroy(gameObject);
+            targetRigidbody.AddForce(Direction * hitForce, ForceMode.Impulse);
         }
     }
 }

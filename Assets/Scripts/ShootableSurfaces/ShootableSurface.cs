@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace ShootableSurfaces
 {
     public abstract class ShootableSurface : MonoBehaviour
     {
+        private const float DestroyTime = 3f;
+        
         public bool isHit;
         
         protected Material SurfaceMaterial;
@@ -20,12 +23,16 @@ namespace ShootableSurfaces
             isHit = false;
         }
 
-        protected void OnCollisionEnter(Collision other)
+        public void HitByProjectile()
         {
-            if (other.gameObject.CompareTag("Target"))
-            {
-                Physics.IgnoreCollision(other.collider, _collider);
-            }
+            isHit = true;
+            StartCoroutine(DestroyInTime(DestroyTime));
+        }
+
+        private IEnumerator DestroyInTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+            Destroy(gameObject);
         }
     }
 }

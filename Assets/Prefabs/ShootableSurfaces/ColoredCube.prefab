@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7883513308908927716}
   - component: {fileID: 7883513308908927719}
   - component: {fileID: 7883513308908927712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ColoredCube
   m_TagString: Target
   m_Icon: {fileID: 0}
