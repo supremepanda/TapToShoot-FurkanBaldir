@@ -1,4 +1,5 @@
 ﻿using Managers;
+using ShootableSurfaces;
 using UnityEngine;
 
 namespace Controllers
@@ -25,6 +26,7 @@ namespace Controllers
             Ray ray = _mainCamera.ScreenPointToRay(inputPosition);
             if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;
             if (!hit.collider.CompareTag("Target")) return;
+            if (hit.collider.gameObject.GetComponent<ShootableSurface>().isHit) return;
             var targetDirection = ray.direction;
             OnTargetRaycasted?.Invoke(hit.transform);
 

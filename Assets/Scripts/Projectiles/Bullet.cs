@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ShootableSurfaces;
+using UnityEngine;
 
 namespace Projectiles
 {
@@ -8,10 +9,12 @@ namespace Projectiles
     
         protected override void HitTarget(Collision target)
         {
+            target.collider.gameObject.GetComponent<ShootableSurface>().isHit = true;
             var forceDirection = -target.GetContact(0).normal;   
             var targetRigidbody = target.gameObject.GetComponent<Rigidbody>();
-        
             targetRigidbody.AddForce(forceDirection * hitForce, ForceMode.Impulse);
+            
+            Destroy(gameObject);
         }
     }
 }

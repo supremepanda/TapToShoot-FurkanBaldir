@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ShootableSurfaces;
+using UnityEngine;
 
 namespace Projectiles
 {
@@ -6,9 +7,9 @@ namespace Projectiles
     {
         [SerializeField] protected float speed;
         private Rigidbody _rigidbody;
-    
+
         protected abstract void HitTarget(Collision target);
-    
+        
         protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
