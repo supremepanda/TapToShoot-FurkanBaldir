@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ShootableSurfaces;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Projectiles

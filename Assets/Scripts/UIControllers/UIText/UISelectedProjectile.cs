@@ -1,10 +1,6 @@
-﻿using System;
-using Managers;
-using UIControllers.UIText;
-using UnityEngine;
-using TMP_Text = TMPro.TMP_Text;
+﻿using Managers;
 
-namespace UIControllers
+namespace UIControllers.UIText
 {
     public class UISelectedProjectile : UITextBehaviour
     {

@@ -1,6 +1,5 @@
 ﻿using System;
 using Controllers;
-using UIControllers.UIText;
 using UnityEngine;
 
 namespace Managers

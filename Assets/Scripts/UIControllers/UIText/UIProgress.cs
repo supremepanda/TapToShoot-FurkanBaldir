@@ -1,10 +1,6 @@
-﻿using System;
-using Controllers;
-using UIControllers.UIText;
-using UnityEngine;
-using TMP_Text = TMPro.TMP_Text;
+﻿using Controllers;
 
-namespace UIControllers
+namespace UIControllers.UIText
 {
     public class UIProgress : UITextBehaviour
     {

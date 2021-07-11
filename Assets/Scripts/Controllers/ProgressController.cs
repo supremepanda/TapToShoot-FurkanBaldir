@@ -1,6 +1,4 @@
-using System;
 using ShootableSurfaces;
-using UIControllers;
 using UIControllers.UIText;
 using UnityEngine;
 

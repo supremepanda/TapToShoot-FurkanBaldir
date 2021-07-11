@@ -1,5 +1,4 @@
-﻿using System;
-using Controllers;
+﻿using Controllers;
 
 namespace UIControllers.UIPanelActivationBehaviour
 {
