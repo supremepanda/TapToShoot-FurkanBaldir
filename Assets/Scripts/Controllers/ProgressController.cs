@@ -40,7 +40,7 @@ namespace Controllers
         {
             _percentageProgress += 100d / _targetAmount;
             Debug.Log(_percentageProgress);
-            OnIncreasedProgress?.Invoke(_percentageProgress);
+            OnIncreasedProgress?.Invoke((int)Mathf.Floor((float)_percentageProgress));
             if (!(_percentageProgress >= 100d)) return;
             OnFinishedProgress?.Invoke();
         }
