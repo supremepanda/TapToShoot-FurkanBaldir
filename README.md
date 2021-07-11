@@ -29,7 +29,7 @@ If you want to test for low performance devices, you can use this.
   
   Change Projectile: 1 finger stationary touch + 1 finger touch (Touch begin) (Two finger action)
 
-Here these are screenshots of game:
+## Screenshots
 
 <img src="https://github.com/supremepanda/TapToShoot-FurkanBaldir/blob/master/Screenshots/ss1.png"/>
 
