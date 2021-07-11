@@ -12,7 +12,6 @@ namespace Spawners
         [SerializeField] private int columns;
         [SerializeField] private Vector3 offset;
         [SerializeField] private List<GameObject> surfaces = new List<GameObject>();
-        [SerializeField] private GameObject surfaceSpawnParent;
 
         private ProgressController _progressController;
         
@@ -35,7 +34,7 @@ namespace Spawners
                 {
                     int surfaceIndex = Random.Range(0, _surfaceEnumLength);
                     Vector3 spawnPosition = new Vector3(column + offset.x, row + offset.y, 0 + offset.z);
-                    Instantiate(surfaces[surfaceIndex], spawnPosition, Quaternion.identity, surfaceSpawnParent.transform);
+                    Instantiate(surfaces[surfaceIndex], spawnPosition, Quaternion.identity);
                 }
             }
         }
