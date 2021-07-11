@@ -22,7 +22,7 @@ namespace UIControllers
 
         public override void UpdateEditableText<T>(T value)
         {
-            EditableText.text = $"Progress: %{value.ToString()}";
+            EditableText.text = $"Progress: %{value:0}";
         }
     }
 }

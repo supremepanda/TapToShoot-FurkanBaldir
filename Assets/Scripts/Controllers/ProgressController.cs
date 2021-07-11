@@ -8,7 +8,7 @@ namespace Controllers
 {
     public class ProgressController : MonoBehaviour
     {
-        public delegate void IncreaseProgressPercentage(float percentage);
+        public delegate void IncreaseProgressPercentage(double percentage);
         public event IncreaseProgressPercentage OnIncreasedProgress;
 
         public delegate void FinishProgress();
@@ -21,7 +21,7 @@ namespace Controllers
         }
 
         private UITextBehaviour _uiProgress;
-        private float _percentageProgress = 0f;
+        private double _percentageProgress = 0d;
 
         private void Start()
         {
@@ -38,11 +38,10 @@ namespace Controllers
         
         private void IncreaseProgress()
         {
+            _percentageProgress += 100d / _targetAmount;
             Debug.Log(_percentageProgress);
-            _percentageProgress += 100 / _targetAmount;
             OnIncreasedProgress?.Invoke(_percentageProgress);
-            if (!(_percentageProgress >= 100f)) return;
-            Debug.Log("gameover");
+            if (!(_percentageProgress >= 100d)) return;
             OnFinishedProgress?.Invoke();
         }
     }
