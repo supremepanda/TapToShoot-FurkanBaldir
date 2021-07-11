@@ -6,9 +6,9 @@ namespace Controllers
     public class TapInputController : MonoBehaviour
     {
         public delegate void SendInputPosition(Vector3 inputPosition);
-        public event SendInputPosition OnTapAction;
-        
         public delegate void ProjectileChangeInput();
+        
+        public event SendInputPosition OnTapAction;
         public event ProjectileChangeInput OnProjectileChangedInput;
         
         private void Update()

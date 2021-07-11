@@ -6,7 +6,6 @@ namespace Managers
     public class PlatformManager : MonoBehaviour
     {
         public static PlatformManager Instance;
-    
         public Platform platform;
     
         private void Start()

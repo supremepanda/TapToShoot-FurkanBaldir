@@ -6,21 +6,21 @@ namespace Controllers
 {
     public class ProgressController : MonoBehaviour
     {
-        public delegate void IncreaseProgressPercentage(double percentage);
-        public event IncreaseProgressPercentage OnIncreasedProgress;
-
-        public delegate void FinishProgress();
-        public event FinishProgress OnFinishedProgress;
-        
         private int _targetAmount;
-        public int TargetAmount
-        {
-            set => _targetAmount = value;
-        }
-
         private UITextBehaviour _uiProgress;
         private double _percentageProgress = 0d;
-
+        
+        private void OnDestroy()
+        {
+            ShootableSurface.OnHit -= IncreaseProgress;
+        }
+        
+        public delegate void IncreaseProgressPercentage(double percentage);
+        public delegate void FinishProgress();
+        
+        public event IncreaseProgressPercentage OnIncreasedProgress;
+        public event FinishProgress OnFinishedProgress;
+        
         private void Start()
         {
             _uiProgress = FindObjectOfType<UITextBehaviour>();
@@ -29,9 +29,9 @@ namespace Controllers
             ShootableSurface.OnHit += IncreaseProgress;
         }
         
-        private void OnDestroy()
+        public int TargetAmount
         {
-            ShootableSurface.OnHit -= IncreaseProgress;
+            set => _targetAmount = value;
         }
         
         private void IncreaseProgress()

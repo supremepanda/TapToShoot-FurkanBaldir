@@ -6,32 +6,21 @@ namespace ShootableSurfaces
 {
     public abstract class ShootableSurface : MonoBehaviour
     {
-        public delegate void Hit();
-        public static event Hit OnHit;
-
+        protected abstract void ChangeColorRandom();
+        
         private const float DestroyTime = 3f;
         
         public bool isHit;
-        
         protected Material SurfaceMaterial;
-        protected Rigidbody SurfaceRigidbody;
-        private Collider _collider;
-        private ProgressController _progressController;
 
-        protected abstract void ChangeColorRandom();
-    
+        public delegate void Hit();
+        public static event Hit OnHit;
+        
         protected virtual void Awake()
         {
-            SurfaceRigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<Collider>();
             isHit = false;
         }
-
-        protected void Start()
-        {
-            _progressController = FindObjectOfType<ProgressController>();
-        }
-
+        
         public void HitByProjectile()
         {
             if (isHit) return;

@@ -6,14 +6,19 @@ namespace Managers
 {
     public class ProjectileSelectionManager : MonoBehaviour
     {
-        public delegate void ChangeSelectedProjectile(ProjectileType selectedProjectileType);
-        public event ChangeSelectedProjectile OnSelectedProjectile;
-        
         private TapInputController _tapInputController;
         private ProjectileType _selectedProjectileType;
         private int _indexProjectileType;
         private int _enumLengthProjectileTypes;
-
+        
+        private void OnDestroy()
+        {
+            _tapInputController.OnProjectileChangedInput -= ChangeProjectile;
+        }
+        
+        public delegate void ChangeSelectedProjectile(ProjectileType selectedProjectileType);
+        public event ChangeSelectedProjectile OnSelectedProjectile;
+        
         private void Awake()
         {
             InitializeProjectileSelectionManager();
@@ -25,11 +30,6 @@ namespace Managers
             _tapInputController.OnProjectileChangedInput += ChangeProjectile;
             OnSelectedProjectile?.Invoke(_selectedProjectileType);
 
-        }
-
-        private void OnDestroy()
-        {
-            _tapInputController.OnProjectileChangedInput -= ChangeProjectile;
         }
 
         private void InitializeProjectileSelectionManager()

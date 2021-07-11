@@ -8,14 +8,9 @@ namespace Projectiles
         private const float DestroyTime = 6f;
         private const float HitDestroyTime = 2f;
         
-        [SerializeField] protected float speed;
+        [SerializeField] protected float Speed;
         protected Vector3 Direction;
         private Rigidbody _rigidbody;
-
-        protected virtual void HitTarget(Collision target)
-        {
-            StartCoroutine(DestroyInTime(HitDestroyTime));
-        }
         
         protected virtual void Awake()
         {
@@ -39,13 +34,18 @@ namespace Projectiles
         {
             transform.LookAt(targetTransform);
             Direction = transform.forward;
-            _rigidbody.velocity = Direction * speed;
+            _rigidbody.velocity = Direction * Speed;
         }
 
         protected IEnumerator DestroyInTime(float time)
         {
             yield return new WaitForSeconds(time);
             Destroy(gameObject);
+        }
+        
+        protected virtual void HitTarget(Collision target)
+        {
+            StartCoroutine(DestroyInTime(HitDestroyTime));
         }
     }
 }
