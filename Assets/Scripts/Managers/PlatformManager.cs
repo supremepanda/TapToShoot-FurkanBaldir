@@ -36,7 +36,7 @@ namespace Managers
 #if UNITY_EDITOR
             platform = Platform.Editor;
 #else
-            platform = Platfor.Mobile;
+            platform = Platform.Mobile;
 #endif
         }
     }
