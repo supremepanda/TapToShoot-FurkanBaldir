@@ -8,8 +8,11 @@ namespace Spawners
 {
     public class SurfaceSpawner : MonoBehaviour
     {
+        [Header("Coordinates")]
         [SerializeField] private int _rows;
         [SerializeField] private int _columns;
+        
+        [Header("Other Configurations")]
         [SerializeField] private Vector3 _offset;
         [SerializeField] private List<GameObject> _surfaces = new List<GameObject>();
         private ProgressController _progressController;
