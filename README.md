@@ -1,7 +1,8 @@
 # Tap to Shoot Game
 
-## Inspector
 It is a simple tap to shot game developed for mobile platform. Here some notes:
+
+## Inspector
 
 If you want to add new projectile, you can add your prefab to this list. (For new hit reactions, Projectile abstract class inheritence needed.)
 
