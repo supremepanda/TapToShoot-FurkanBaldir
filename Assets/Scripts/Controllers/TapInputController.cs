@@ -8,30 +8,41 @@ namespace Controllers
         public delegate void SendInputPosition(Vector3 inputPosition);
         public event SendInputPosition OnTapAction;
         
-        private Platform _platform;
-        private void Start()
-        {
-            _platform = PlatformManager.Instance.platform;
-        }
-
+        public delegate void ProjectileChangeInput();
+        public event ProjectileChangeInput OnProjectileChangedInput;
+        
         private void Update()
         {
-            if (_platform == Platform.Editor)
+            if (PlatformManager.Instance.platform == Platform.Editor)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
                     OnTapAction?.Invoke(Input.mousePosition);
                 }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    OnProjectileChangedInput?.Invoke();
+                }
             }
             else
             {
                 if (Input.touchCount <= 0) return;
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
+                Touch firstTouch = Input.GetTouch(0);
+                if (Input.touchCount == 2)
                 {
-                    OnTapAction?.Invoke(touch.position);
+                    Touch secondTouch = Input.GetTouch(1);
+                    if (firstTouch.phase == TouchPhase.Began && secondTouch.phase == TouchPhase.Began)
+                    {
+                        OnProjectileChangedInput?.Invoke();
+                    }
+                }
+                else if(firstTouch.phase == TouchPhase.Began)
+                {
+                    OnTapAction?.Invoke(firstTouch.position);
                 }
             }
         }
+        
+        
     }
 }

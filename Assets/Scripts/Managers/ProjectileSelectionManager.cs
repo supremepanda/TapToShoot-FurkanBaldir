@@ -10,9 +10,8 @@ namespace Managers
         public delegate void ChangeSelectedProjectile(ProjectileType selectedProjectileType);
         public event ChangeSelectedProjectile OnSelectedProjectile;
         
-        private ProjectileChangeInputController _projectileChangeInputController;
+        private TapInputController _tapInputController;
         private ProjectileType _selectedProjectileType;
-        private UITextBehaviour _selectedProjectileText;
         private int _indexProjectileType;
         private int _enumLengthProjectileTypes;
 
@@ -23,10 +22,15 @@ namespace Managers
 
         private void Start()
         {
-            _projectileChangeInputController = FindObjectOfType<ProjectileChangeInputController>();
-            _projectileChangeInputController.OnProjectileChangedInput += ChangeProjectile;
+            _tapInputController = FindObjectOfType<TapInputController>();
+            _tapInputController.OnProjectileChangedInput += ChangeProjectile;
             OnSelectedProjectile?.Invoke(_selectedProjectileType);
 
+        }
+
+        private void OnDestroy()
+        {
+            _tapInputController.OnProjectileChangedInput -= ChangeProjectile;
         }
 
         private void InitializeProjectileSelectionManager()
@@ -42,7 +46,6 @@ namespace Managers
             if (_indexProjectileType >= _enumLengthProjectileTypes)
             {
                 _indexProjectileType = 0;
-                
             }
             _selectedProjectileType = (ProjectileType) _indexProjectileType;
             OnSelectedProjectile?.Invoke(_selectedProjectileType);

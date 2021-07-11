@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ namespace Managers
     
         public Platform platform;
     
-        private void Awake()
+        private void Start()
         {
             if (Instance != null)
             {
@@ -20,12 +21,22 @@ namespace Managers
             InitializePlatformManager();
         }
 
+        private void Update()
+        {
+#if UNITY_EDITOR
+            if (EditorApplication.isRemoteConnected)
+            {
+                platform = Platform.Mobile;
+            }                
+#endif
+        }
+
         private void InitializePlatformManager()
         {
 #if UNITY_EDITOR
-            Instance.platform = Platform.Editor;
+            platform = Platform.Editor;
 #else
-            Instance.platform = Platfor.Mobile;
+            platform = Platfor.Mobile;
 #endif
         }
     }
