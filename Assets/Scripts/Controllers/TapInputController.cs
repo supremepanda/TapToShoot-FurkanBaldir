@@ -31,7 +31,7 @@ namespace Controllers
                 if (Input.touchCount == 2)
                 {
                     Touch secondTouch = Input.GetTouch(1);
-                    if (firstTouch.phase == TouchPhase.Began && secondTouch.phase == TouchPhase.Began)
+                    if (firstTouch.phase == TouchPhase.Stationary && secondTouch.phase == TouchPhase.Began)
                     {
                         OnProjectileChangedInput?.Invoke();
                     }
