@@ -14,3 +14,9 @@ public enum SurfaceType
 {
     ColoredCube = 0
 }
+
+public enum FPSMode
+{
+    LowPerformance = 10,
+    Default = 60
+}
