@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Controllers;
 using UnityEngine;
 
 namespace ShootableSurfaces
@@ -13,7 +14,8 @@ namespace ShootableSurfaces
         protected Material SurfaceMaterial;
         protected Rigidbody SurfaceRigidbody;
         private Collider _collider;
-        
+        private ProgressController _progressController;
+
         protected abstract void ChangeColorRandom();
     
         protected virtual void Awake()
@@ -23,9 +25,16 @@ namespace ShootableSurfaces
             isHit = false;
         }
 
+        protected void Start()
+        {
+            _progressController = FindObjectOfType<ProgressController>();
+        }
+
         public void HitByProjectile()
         {
+            if (isHit) return;
             isHit = true;
+            _progressController.InvokeOnHitTarget();
             StartCoroutine(DestroyInTime(DestroyTime));
         }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Controllers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,13 +11,16 @@ namespace Spawners
         [SerializeField] private int rows;
         [SerializeField] private int columns;
         [SerializeField] private Vector3 offset;
-        
         [SerializeField] private List<GameObject> surfaces = new List<GameObject>();
 
+        private ProgressController _progressController;
+        
         private int _surfaceEnumLength;
 
         private void Start()
         {
+            _progressController = FindObjectOfType<ProgressController>();
+            _progressController.TargetAmount = rows * columns;
             _surfaceEnumLength = Enum.GetNames(typeof(SurfaceType)).Length;
             SpawnSurfaces();
         }
