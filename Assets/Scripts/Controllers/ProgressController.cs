@@ -1,12 +1,17 @@
+using ShootableSurfaces;
+using UIControllers;
+using UIControllers.UIText;
 using UnityEngine;
 
 namespace Controllers
 {
     public class ProgressController : MonoBehaviour
     {
-        public delegate void TargetHit();
+        public delegate void IncreaseProgressPercentage(float percentage);
+        public event IncreaseProgressPercentage OnIncreasedProgress;
 
-        public event TargetHit OnHitTarget;
+        public delegate void FinishProgress();
+        public event FinishProgress OnFinishedProgress;
         
         private int _targetAmount;
         public int TargetAmount
@@ -14,25 +19,26 @@ namespace Controllers
             set => _targetAmount = value;
         }
 
-        private float percentageProgress = 0f;
+        private UITextBehaviour _uiProgress;
+        private float _percentageProgress = 0f;
 
         private void Start()
         {
-            OnHitTarget += IncreaseProgress;
+            _uiProgress = FindObjectOfType<UIProgress>();
+            _uiProgress.UpdateEditableText(_percentageProgress);
+            OnIncreasedProgress?.Invoke(_percentageProgress);
+            ShootableSurface.OnHit += IncreaseProgress;
         }
 
         private void IncreaseProgress()
         {
-            percentageProgress += 100 / _targetAmount;
-            if (percentageProgress >= 100f)
+            _percentageProgress += 100 / _targetAmount;
+            OnIncreasedProgress?.Invoke(_percentageProgress);
+            if (_percentageProgress >= 100f)
             {
-                Debug.Log("Gameover");
+                Debug.Log("gameover");
+                OnFinishedProgress?.Invoke();
             }
-        }
-
-        public void InvokeOnHitTarget()
-        {
-            OnHitTarget?.Invoke();
         }
     }
 }

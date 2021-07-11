@@ -7,6 +7,9 @@ namespace ShootableSurfaces
 {
     public abstract class ShootableSurface : MonoBehaviour
     {
+        public delegate void Hit();
+        public static event Hit OnHit;
+
         private const float DestroyTime = 3f;
         
         public bool isHit;
@@ -34,7 +37,7 @@ namespace ShootableSurfaces
         {
             if (isHit) return;
             isHit = true;
-            _progressController.InvokeOnHitTarget();
+            OnHit?.Invoke();
             StartCoroutine(DestroyInTime(DestroyTime));
         }
 

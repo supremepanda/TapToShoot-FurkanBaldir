@@ -1,16 +1,18 @@
 ﻿using System;
 using Controllers;
+using UIControllers.UIText;
 using UnityEngine;
 
 namespace Managers
 {
     public class ProjectileSelectionManager : MonoBehaviour
     {
+        public delegate void ChangeSelectedProjectile(ProjectileType selectedProjectileType);
+        public event ChangeSelectedProjectile OnSelectedProjectile;
+        
         private ProjectileChangeInputController _projectileChangeInputController;
-
         private ProjectileType _selectedProjectileType;
-        public ProjectileType SelectedProjectileType => _selectedProjectileType;
-
+        private UITextBehaviour _selectedProjectileText;
         private int _indexProjectileType;
         private int _enumLengthProjectileTypes;
 
@@ -23,6 +25,8 @@ namespace Managers
         {
             _projectileChangeInputController = FindObjectOfType<ProjectileChangeInputController>();
             _projectileChangeInputController.OnProjectileChangedInput += ChangeProjectile;
+            OnSelectedProjectile?.Invoke(_selectedProjectileType);
+
         }
 
         private void InitializeProjectileSelectionManager()
@@ -41,6 +45,7 @@ namespace Managers
                 
             }
             _selectedProjectileType = (ProjectileType) _indexProjectileType;
+            OnSelectedProjectile?.Invoke(_selectedProjectileType);
         }
     }
 }
