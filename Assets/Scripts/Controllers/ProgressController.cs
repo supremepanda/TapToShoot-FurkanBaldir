@@ -1,3 +1,4 @@
+using System;
 using ShootableSurfaces;
 using UIControllers;
 using UIControllers.UIText;
@@ -24,21 +25,25 @@ namespace Controllers
 
         private void Start()
         {
-            _uiProgress = FindObjectOfType<UIProgress>();
+            _uiProgress = FindObjectOfType<UITextBehaviour>();
             _uiProgress.UpdateEditableText(_percentageProgress);
             OnIncreasedProgress?.Invoke(_percentageProgress);
             ShootableSurface.OnHit += IncreaseProgress;
         }
-
+        
+        private void OnDestroy()
+        {
+            ShootableSurface.OnHit -= IncreaseProgress;
+        }
+        
         private void IncreaseProgress()
         {
+            Debug.Log(_percentageProgress);
             _percentageProgress += 100 / _targetAmount;
             OnIncreasedProgress?.Invoke(_percentageProgress);
-            if (_percentageProgress >= 100f)
-            {
-                Debug.Log("gameover");
-                OnFinishedProgress?.Invoke();
-            }
+            if (!(_percentageProgress >= 100f)) return;
+            Debug.Log("gameover");
+            OnFinishedProgress?.Invoke();
         }
     }
 }

@@ -15,6 +15,11 @@ namespace UIControllers
             _progressController.OnIncreasedProgress += UpdateEditableText;
         }
 
+        private void OnDestroy()
+        {
+            _progressController.OnIncreasedProgress -= UpdateEditableText;
+        }
+
         public override void UpdateEditableText<T>(T value)
         {
             EditableText.text = $"Progress: %{value.ToString()}";

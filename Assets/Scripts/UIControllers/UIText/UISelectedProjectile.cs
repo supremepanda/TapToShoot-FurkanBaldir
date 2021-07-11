@@ -15,6 +15,12 @@ namespace UIControllers
             _projectileSelectionManager.OnSelectedProjectile += UpdateEditableText;
         }
 
+        private void OnDestroy()
+        {
+            _projectileSelectionManager.OnSelectedProjectile -= UpdateEditableText;
+
+        }
+
         public override void UpdateEditableText<T>(T value)
         {
             EditableText.text = $"Selected: {value.ToString()}";

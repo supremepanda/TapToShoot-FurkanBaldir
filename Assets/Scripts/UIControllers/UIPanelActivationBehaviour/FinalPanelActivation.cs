@@ -13,6 +13,11 @@ namespace UIControllers.UIPanelActivationBehaviour
             _progressController.OnFinishedProgress += ActivatePanel;
         }
 
+        private void OnDestroy()
+        {
+            _progressController.OnFinishedProgress -= ActivatePanel;
+        }
+
         public override void ActivatePanel()
         {
             panel.SetActive(true);

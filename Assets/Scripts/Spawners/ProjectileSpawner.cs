@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Controllers;
 using Managers;
@@ -20,6 +21,12 @@ namespace Spawners
             
             _raycastController.OnTargetRaycasted += SpawnProjectile;
             _projectileSelectionManager.OnSelectedProjectile += ChangeCurrentSelectedProjectile;
+        }
+
+        private void OnDestroy()
+        {
+            _raycastController.OnTargetRaycasted -= SpawnProjectile;
+            _projectileSelectionManager.OnSelectedProjectile -= ChangeCurrentSelectedProjectile;
         }
 
         private void ChangeCurrentSelectedProjectile(ProjectileType type)

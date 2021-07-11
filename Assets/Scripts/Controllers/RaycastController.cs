@@ -1,4 +1,5 @@
-﻿using Managers;
+﻿using System;
+using Managers;
 using ShootableSurfaces;
 using UnityEngine;
 
@@ -19,6 +20,11 @@ namespace Controllers
             _mainCamera = Camera.main;
         
             _tapInputController.OnTapAction += SendRayCast;
+        }
+
+        private void OnDestroy()
+        {
+            _tapInputController.OnTapAction -= SendRayCast;
         }
 
         private void SendRayCast(Vector3 inputPosition)
