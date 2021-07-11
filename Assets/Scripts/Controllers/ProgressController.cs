@@ -7,9 +7,10 @@ namespace Controllers
     public class ProgressController : MonoBehaviour
     {
         private int _targetAmount;
+        private int _hitTargetAmount;
         private UITextBehaviour _uiProgress;
         private double _percentageProgress = 0d;
-        
+
         private void OnDestroy()
         {
             ShootableSurface.OnHit -= IncreaseProgress;
@@ -38,8 +39,11 @@ namespace Controllers
         {
             _percentageProgress += 100d / _targetAmount;
             OnIncreasedProgress?.Invoke((int)Mathf.Floor((float)_percentageProgress));
-            if (!(_percentageProgress >= 100d)) return;
-            OnFinishedProgress?.Invoke();
+            _hitTargetAmount++;
+            if (_hitTargetAmount == _targetAmount)
+            {
+                OnFinishedProgress?.Invoke();
+            }
         }
     }
 }

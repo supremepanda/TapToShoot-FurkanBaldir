@@ -417,7 +417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259c73ea92fcb5f4d90b6799c1e102d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fpsMode: 60
+  _fpsMode: 60
 --- !u!1 &214797482
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,10 +447,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b65c9c95c89963419b0e1203aa6f65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 20
-  offset: {x: 0, y: 0, z: -6.98}
-  surfaces:
+  _rows: 10
+  _columns: 30
+  _offset: {x: 0, y: 0, z: -3}
+  _surfaces:
   - {fileID: 7883513308908927718, guid: 2397502339a9a0443b2a9b90df86c254, type: 3}
 --- !u!4 &214797484
 Transform:
@@ -866,10 +866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0526b94269d574e4dbae12df4fdf3871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectiles:
+  _projectiles:
   - {fileID: 6274362951782415035, guid: aa139c82b0c5f134589681a55a83b892, type: 3}
   - {fileID: 6274362951782415035, guid: e2707eee042519e44b101de0b6a13bb4, type: 3}
-  projectileSpawnPosition: {fileID: 335026409}
+  _projectileSpawnPosition: {fileID: 335026409}
 --- !u!4 &632033127
 Transform:
   m_ObjectHideFlags: 0
@@ -1739,7 +1739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64ee350aabe447fe8b5cd22b55131606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1813650901}
+  Panel: {fileID: 1813650901}
 --- !u!4 &1557197393
 Transform:
   m_ObjectHideFlags: 0
