@@ -6,8 +6,6 @@ namespace Managers
 {
     public class ProjectileSelectionManager : MonoBehaviour
     {
-        public static ProjectileSelectionManager Instance;
-
         private ProjectileChangeInputController _projectileChangeInputController;
 
         private ProjectileType _selectedProjectileType;
@@ -18,8 +16,6 @@ namespace Managers
 
         private void Awake()
         {
-            if (Instance != null) return;
-            Instance = this;
             InitializeProjectileSelectionManager();
         }
 

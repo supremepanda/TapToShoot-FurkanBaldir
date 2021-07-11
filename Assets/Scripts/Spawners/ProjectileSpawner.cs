@@ -11,15 +11,17 @@ namespace Spawners
         [SerializeField] private List<GameObject> projectiles = new List<GameObject>();
         [SerializeField] private Transform projectileSpawnPosition;
         private RaycastController _raycastController;
+        private ProjectileSelectionManager _projectileSelectionManager;
         private void Start()
         {
             _raycastController = FindObjectOfType<RaycastController>();
+            _projectileSelectionManager = FindObjectOfType<ProjectileSelectionManager>();
             _raycastController.OnTargetRaycasted += SpawnProjectile;
         }
 
         private void SpawnProjectile(Transform targetTransform)
         {
-            ProjectileType type = ProjectileSelectionManager.Instance.SelectedProjectileType;
+            ProjectileType type = _projectileSelectionManager.SelectedProjectileType;
             GameObject newProjectile = Instantiate(projectiles[(int)type], projectileSpawnPosition.position, Quaternion.identity);
             newProjectile.GetComponent<Projectile>().Fire(targetTransform);
         }

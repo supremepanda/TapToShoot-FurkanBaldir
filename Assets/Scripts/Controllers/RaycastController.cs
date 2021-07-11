@@ -10,10 +10,12 @@ namespace Controllers
         public event RaycastTarget OnTargetRaycasted;
     
         private TapInputController _tapInputController;
+        private ShootManager _shootManager;
         private Camera _mainCamera;
         private void Start()
         {
             _tapInputController = FindObjectOfType<TapInputController>();
+            _shootManager = FindObjectOfType<ShootManager>();
             _mainCamera = Camera.main;
         
             _tapInputController.OnTapAction += SendRayCast;
@@ -21,7 +23,7 @@ namespace Controllers
 
         private void SendRayCast(Vector3 inputPosition)
         {
-            if (!ShootManager.Instance.isShootingEnabled) return;
+            if (!_shootManager.isShootingEnabled) return;
             RaycastHit hit;
             Ray ray = _mainCamera.ScreenPointToRay(inputPosition);
             if (!Physics.Raycast(ray, out hit, Mathf.Infinity)) return;

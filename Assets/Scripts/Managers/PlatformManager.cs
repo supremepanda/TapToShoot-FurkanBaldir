@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -10,7 +12,10 @@ namespace Managers
     
         private void Awake()
         {
-            if (Instance != null) return;
+            if (Instance != null)
+            {
+                Destroy(gameObject);
+            }
             Instance = this;
             InitializePlatformManager();
         }
