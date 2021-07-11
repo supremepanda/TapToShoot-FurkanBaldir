@@ -10,7 +10,6 @@ namespace Projectiles
     
         protected override void HitTarget(Collision target)
         {
-            base.HitTarget(target);
             Collider[] colliders = Physics.OverlapSphere(target.GetContact(0).point, radius);
             foreach (var nearBy in colliders)
             {
@@ -20,6 +19,8 @@ namespace Projectiles
                 rb.gameObject.GetComponent<ShootableSurface>().HitByProjectile();
                 rb.AddExplosionForce(explosionForce, transform.position, radius);
             }
+
+            StartCoroutine(DestroyInTime(0f));
         }
     }
 }
