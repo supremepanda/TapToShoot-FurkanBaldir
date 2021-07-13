@@ -2,8 +2,8 @@
 
 namespace UIControllers.UIButton
 {
-    public abstract class UIButtonBehaviour : MonoBehaviour
-    {
-        public abstract void OnClickButton();
+    public interface IButtonBehaviour
+    { 
+        void OnClickButton();
     }
 }

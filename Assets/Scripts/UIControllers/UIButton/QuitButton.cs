@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace UIControllers.UIButton
 {
-    public class QuitButton : UIButtonBehaviour 
+    public class QuitButton : IButtonBehaviour 
     {
-        public override void OnClickButton()
+        public void OnClickButton()
         {
 #if UNITY_EDITOR
             EditorApplication.ExitPlaymode();  

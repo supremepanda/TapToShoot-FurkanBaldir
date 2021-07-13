@@ -2,9 +2,9 @@
 
 namespace UIControllers.UIButton
 {
-    public class RestartButton : UIButtonBehaviour
+    public class RestartButton : IButtonBehaviour
     {
-        public override void OnClickButton()
+        public void OnClickButton()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
