@@ -1,8 +1,9 @@
-﻿using UnityEngine.SceneManagement;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UIControllers.UIButton
 {
-    public class RestartButton : IButtonBehaviour
+    public class RestartButton : MonoBehaviour, IButtonBehaviour
     {
         public void OnClickButton()
         {

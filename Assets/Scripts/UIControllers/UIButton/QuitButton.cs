@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace UIControllers.UIButton
 {
-    public class QuitButton : IButtonBehaviour 
+    public class QuitButton : MonoBehaviour, IButtonBehaviour 
     {
         public void OnClickButton()
         {
