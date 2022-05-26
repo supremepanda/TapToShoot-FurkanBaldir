@@ -1,6 +1,6 @@
 # Tap to Shoot Game
 
-It is a simple tap to shot game developed for mobile platform. Here some notes:
+It is a simple tap to shot game developed for mobile platform. This was a job case at 15.07.2021. Here some notes:
 
 ## Inspector
 
